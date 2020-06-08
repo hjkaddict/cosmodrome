@@ -1,0 +1,248 @@
+<html>
+
+<head>
+    <title>Cosmodrome</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type='text/javascript'
+        src='https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js'></script>
+
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <script>
+        // var fileList = <%-JSON.stringify(fileList)%> //it has to be <%- %>
+    </script>
+
+    <!-- <script>
+        var name;
+        $(function () {
+            //nav mousewheel vertical to horizontal
+            $(".nav").mousewheel(function (event, delta) {
+                this.scrollLeft -= (delta * 1);
+                event.preventDefault();
+            });
+
+            //mousehover on nav
+            $("li").hover(function () {
+                //hover in function
+
+            }, function () {
+                //hover out function 
+            });
+
+            //append file
+            fileList.forEach(value => {
+
+                $('<div/>', {
+                    text: value.name,
+                    class: "list",
+                    id: value.name
+                }).appendTo('.nav');
+
+                $('<div/>', {
+                    class: "sub-list",
+                    id: value.name + "sub"
+                }).appendTo('#' + value.name);
+
+                var files = value.files;
+                files.forEach(file => {
+                    $('<a/>', {
+                        text: file
+                    }).appendTo("#" + value.name + "sub");
+                })
+            });
+
+
+
+            $('.list').click(function () {
+                name = this.id;
+                // console.log(name);
+                var filterFile = fileList.filter(d => d.name === name);
+                var subFiles = filterFile[0]["files"]
+                subFiles.forEach(value => {
+                    console.log(value);
+
+                })
+            })
+
+            //load html
+            // $("#sketch").load('../test.html');
+        });
+    </script> -->
+</head>
+
+<body>
+
+    <header class="">
+        <div class="headerTitle">
+            Algorithms in<br>
+            Cosmodrome
+        </div>
+        <div class="headerMetaData">
+            <img src="img/udk-logo.svg"><br>
+            <p style="font-weight: bold;">New Media Class 2020 Sommersemester</p>
+
+        </div>
+
+    </header>
+
+    <div class="frontPageContainer">
+        <div class="projectContainer">
+            <div class="topicContainer">
+                <div class="topicTitle">
+                    <p>Space Subdivision</p>
+                </div>
+                <div class="topicList">
+                    <ul>
+                        <li>Random Subdivion in Squares</li>
+                        <li>Phyllotaxis</li>
+                        <li>Circle Packing</li>
+                        <li>10 Print</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="topicContainer">
+                <div class="topicTitle">
+                    <p>Space Exploration</p>
+                </div>
+                <div class="topicList">
+                    <ul>
+                        <li>Random Walker</li>
+                        <li>Diffuse Limited Aggregation</li>
+                        <li>2D Ray Casting</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="topicContainer">
+                <div class="topicTitle">
+                    <p>Space Creation</p>
+                </div>
+                <div class="topicList">
+                    <ul>
+                        <li>A Simple Starfield</li>
+                        <li>Maze Generator</li>
+                        <li>Sandpiles</li>
+                        <li>Game of Life</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="projectIntroContainer">
+            <p>Baikonur is a city in Kazakhstan, under russian administration, where the largest space facility in the
+                world
+                is located. Both Sputnik 1, the first artificial satellite, and Vostok 1, the first human spaceflight,
+                were
+                launched from the Baikonur Cosmododrome.<br><br>
+
+                Baikonur could also be seen as a closed city opened to the universe. It is a closed city because a
+                special
+                authorization is required to visit or leave the city located in the Kazakh steep, it is opened to the
+                universe because its space facilities are still in use nowadays for launches to the International Space
+                Station.<br><br>
+
+
+                In this course we will have a look at a collection of algorithms that deal with space subdivision, world
+                creation, travel and exploration, picturing our room as our personal space station.<br><br>
+
+                P.S. The course is focused on algorithms, not on a programming language. A prior knowledge of a creative
+                coding framework is required, you can participate with the creative coding framework you are more
+                familiar
+                with: Processing, openFrameworks, three.js, paper.js, p5.js, nannou, arduino IDE, you name it. The
+                examples
+                will be in p5.js</p>
+            <br>
+            <p style="color: gray;"><a style="color: black;"
+                    href="https://github.com/edap/udk-2020-cosmodrome">https://github.com/edap/udk-2020-cosmodrome</a>
+            </p>
+        </div>
+
+        <div class="creditContainer">
+            <p>Lecturer: Davide Prati</p>
+            <p>Students: Antonio Castles, Bian Zhiping, Dirk Erdmann, Hibiki Ishijima, Hyungjoong Kim, Julius Führer,
+                Julius Winckler,
+                Mattia Friso,
+                Niklas Söder, Niklas Thran, Özcan Ertek, Tatiana Pakhmutova, Qingyun Zhang </p>
+        </div>
+    </div>
+
+    <div class="sketchPageContainer">
+        <div class="studentListContainer">
+            <div class="goBack">
+                <img id="goback" src="img/goback.png">
+            </div>
+            <ul>
+                <div id="topicName"></div>
+                <li>Antonio Castles</li>
+                <li>Bian Zhiping</li>
+                <li>Dirk Erdmann</li>
+                <li>Hibiki Ishijima</li>
+                <li>Hyungjoong Kim</li>
+                <li>Julius Führer</li>
+                <li>Julius Winckler</li>
+                <li>Mattia Friso</li>
+                <li>Niklas Söder</li>
+                <li>Niklas Thran</li>
+                <li>Özcan Ertek</li>
+                <li>Tatiana Pakhmutova</li>
+                <li>Qingyun Zhang</li>
+            </ul>
+        </div>
+        <div class="sketchListContainer">
+            <div class="sketchList"></div>
+            <div class="sketchList"></div>
+            <div class="sketchList"></div>
+            <div class="sketchList"></div>
+            <div class="sketchList"></div>
+        </div>
+    </div>
+
+
+</body>
+
+<script>
+    $(function () {
+        //go to sketchPage
+        $('.topicList ul li').click(function () {
+            $('header').css('height', '0');
+            $('.frontPageContainer').fadeOut('slow', function () {
+                $('.sketchPageContainer').fadeIn();
+            });
+
+            //topic name 
+            let thisTopic = $(this).parent().parent().siblings().text();
+            let thisSubTopic = $(this).text();
+            $('#topicName').html(thisTopic + ': ' + thisSubTopic);
+        })
+
+        //go back to frontPage(by clicking goback button )
+        $('#goback').click(function () {
+            $('.sketchPageContainer').fadeOut(function () {
+                $('.frontPageContainer').fadeIn('fast', function () {
+                    $('header').css('height', '200px');
+                });
+            });
+        });
+
+        //student list hover and click color
+
+        $(".studentListContainer ul li").hover(function () {
+            $(this).addClass('hover');
+        }, function () {
+            $(this).removeClass('hover');
+        });
+
+        $(".studentListContainer ul li").click(function () {
+            $(this).addClass('click');
+        }, function () {
+            $(".studentListContainer ul li").removeClass("click");
+            $(this).removeClass("hover").addClass("click");
+        });
+
+
+
+    })
+</script>
+
+</html>

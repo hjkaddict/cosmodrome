@@ -1,0 +1,152 @@
+@import url('https://rsms.me/inter/inter.css');
+::-webkit-scrollbar {
+    /* display: none; */
+}
+
+* {
+    margin: 0;
+}
+
+html {
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+}
+
+.b {
+    border: 5px dashed black;
+}
+
+header {
+    display: flex;
+    align-items: flex-end;
+    border-bottom: 2px solid black;
+    transition: height 0.5s;
+    height: 200px;
+}
+
+.headerTitle {
+    font-size: 80px;
+    padding: 20px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.headerMetaData {
+    padding: 20px;
+    width: 500px;
+    margin-left: auto;
+    text-align: right;
+}
+
+.frontPageContainer {
+    display: flex;
+    flex-direction: column;
+    transition: height 1s;
+}
+
+.projectIntroContainer {
+    padding: 20px;
+    font-size: 15px;
+    font-weight: bold;
+    border-bottom: 2px solid black;
+    line-height: 1.2em;
+}
+
+.projectContainer {
+    padding: 20px;
+    border-bottom: 2px solid black;
+}
+
+.topicContainer {
+    padding: 10px 0;
+}
+
+.topicTitle {
+    font-size: 30px;
+}
+
+.topicList {
+    font-size: 20px;
+}
+
+.topicList ul li {
+    display: inline-block;
+    margin: 10px 10px 0 0;
+    cursor: pointer;
+    transition: color 0.5s;
+}
+
+.topicList ul li:hover {
+    color: red;
+}
+
+.creditContainer {
+    font-size: 15px;
+    line-height: 1.2em;
+    padding: 20px;
+}
+
+.sketchPageContainer {
+    display: none;
+}
+
+.studentListContainer {
+    height: auto;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid black;;
+    transition: height 3s;
+}
+
+.goBack {
+    /* padding: 500px; */
+}
+
+.goBack img {
+    padding: 10px;
+    height: 100px;
+    cursor: pointer;
+}
+
+.goBack img:hover {
+    opacity: 0.5;
+}
+
+.studentListContainer ul {
+    padding: 20px;
+}
+
+.studentListContainer div {
+    font-size: 30px;
+    padding: 10px 0;
+}
+
+.studentListContainer ul li {
+    display: inline-block;
+    font-size: 20px;
+    margin: 5px 10px 5px 0;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.studentListContainer .hover {
+    color: gray;
+}
+
+.studentListContainer .click {
+    color: red;
+}
+
+.sketchListContainer {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+
+.sketchList {
+    margin: 10px;
+    width: 300px;
+    height: 300px;
+    border: 2px solid black;
+}

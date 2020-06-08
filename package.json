@@ -1,0 +1,22 @@
+{
+  "name": "hyungjoongkim",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js -e ejs,js"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://github.com/hjkaddict/cosmodrome#readme",
+  "dependencies": {
+    "ejs": "^3.1.2",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  }
+}
