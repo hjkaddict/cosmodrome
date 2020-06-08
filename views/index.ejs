@@ -10,66 +10,6 @@
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
 
-    <script>
-        // var fileList = <%-JSON.stringify(fileList)%> //it has to be <%- %>
-    </script>
-
-    <!-- <script>
-        var name;
-        $(function () {
-            //nav mousewheel vertical to horizontal
-            $(".nav").mousewheel(function (event, delta) {
-                this.scrollLeft -= (delta * 1);
-                event.preventDefault();
-            });
-
-            //mousehover on nav
-            $("li").hover(function () {
-                //hover in function
-
-            }, function () {
-                //hover out function 
-            });
-
-            //append file
-            fileList.forEach(value => {
-
-                $('<div/>', {
-                    text: value.name,
-                    class: "list",
-                    id: value.name
-                }).appendTo('.nav');
-
-                $('<div/>', {
-                    class: "sub-list",
-                    id: value.name + "sub"
-                }).appendTo('#' + value.name);
-
-                var files = value.files;
-                files.forEach(file => {
-                    $('<a/>', {
-                        text: file
-                    }).appendTo("#" + value.name + "sub");
-                })
-            });
-
-
-
-            $('.list').click(function () {
-                name = this.id;
-                // console.log(name);
-                var filterFile = fileList.filter(d => d.name === name);
-                var subFiles = filterFile[0]["files"]
-                subFiles.forEach(value => {
-                    console.log(value);
-
-                })
-            })
-
-            //load html
-            // $("#sketch").load('../test.html');
-        });
-    </script> -->
 </head>
 
 <body>
