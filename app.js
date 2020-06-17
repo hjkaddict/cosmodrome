@@ -26,7 +26,7 @@ app.get('/test', async (req, res) => {
                 username: process.env.NEXTCLOUD_USERNAME,
                 password: process.env.NEXTCLOUD_PASSWORD
             })
-        const directoryItems = await client.getDirectoryContents("/cosmodrome2020");
+        const directoryItems = await client.getDirectoryContents("/cosmodrome2020/06_diffuseLimitedAggregation/Dirk Erdmann");
         res.send(directoryItems)
     } catch (e) {
         res.send(e)
