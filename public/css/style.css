@@ -1,7 +1,3 @@
-@import url('https://rsms.me/inter/inter.css');
-::-webkit-scrollbar {
-    /* display: none; */
-}
 
 * {
     margin: 0;
@@ -149,4 +145,11 @@ header {
     width: 300px;
     height: 300px;
     border: 2px solid black;
+}
+
+#sketchTest {
+    /* background-color: red; */
+    /* border: 2px solid red; */
+    /* width: 100vw; */
+    /* height: 100vh */
 }
