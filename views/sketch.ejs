@@ -7,13 +7,8 @@
     <title>Cosmodrome</title>
 
     <script>
-        var myVar = <%- JSON.stringify(sketch) %>;
-        console.log(typeof(myVar))
+        eval(<%- JSON.stringify(sketch) %>)
     </script>
 </head>
-
-<body>
-    <%= sketch %>
-</body>
 
 </html>
