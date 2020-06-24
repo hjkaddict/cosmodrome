@@ -1,10 +1,8 @@
-
-
 function setup() {
-    var divWidth = $("#sketchTest").innerWidth()
-    var divHeight = $('#sketchTest').innerHeight();
+    var divWidth = $("#sketchContainer").innerWidth()
+    var divHeight = $('#sketchContainer').innerHeight();
     var myCanvas = createCanvas(divWidth, divHeight);
-    myCanvas.parent('sketchTest');
+    myCanvas.parent('sketchContainer');
 }
 
 function draw() {
@@ -13,8 +11,6 @@ function draw() {
     ellipse(width / 2, height / 2, 500, 500);
 }
 
-
-
 function windowResized() {
-    resizeCanvas($("#sketchTest").innerWidth(), $('#sketchTest').innerHeight());
+    resizeCanvas($("#sketchContainer").innerWidth(), $('#sketchContainer').innerHeight());
 }

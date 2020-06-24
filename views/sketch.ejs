@@ -1,0 +1,19 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js"></script>
+    <title>Cosmodrome</title>
+
+    <script>
+        var myVar = <%- JSON.stringify(sketch) %>;
+        console.log(typeof(myVar))
+    </script>
+</head>
+
+<body>
+    <%= sketch %>
+</body>
+
+</html>

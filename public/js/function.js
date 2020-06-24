@@ -33,7 +33,16 @@ $(function () {
         window.location = '/projects/' + title + "/" + text
         $(".studentListContainer ul li").removeClass("click");
         $(this).removeClass("hover").addClass("click");
-
     });
+
+    $('.sketchList').on('click', function () {
+        let filename = $(this).text().trim()
+        $("#sketchContainer").empty()
+        window.location = window.location.href + "/" + filename
+    })
 })
+
+$(document).ready(function () {
+
+});
 

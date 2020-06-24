@@ -40,11 +40,10 @@ app.get('/projects/:id/:name', async (req, res) => {
             await sketchFolders.push(v.basename)
         })
 
-        // console.log(sketchFolders)
         const thumbnailList = [];
 
         // sketchFolders.forEach(async (v) => {
-        //     var thumbnailItems = await client.getFileContents("/cosmodrome2020/" + req.params.id + "/" + req.params.name + "/" + v + "/thumbnail.png")
+        //     var thumbnailItems = await client.getFileContents("/cosmodrome2020/" + req.params.id + "/" + req.params.name + "/" + v + "/sketch2.js")
         //     console.log(thumbnailItems)
         //     thumbnailList.push(thumbnailItems)
         // })
@@ -53,6 +52,32 @@ app.get('/projects/:id/:name', async (req, res) => {
             title: req.params.id,
             files: sketchFolders,
             thumbnails: thumbnailList
+        })
+
+    } catch (e) {
+        res.send(e)
+    }
+})
+
+app.get('/projects/:id/:name/:sketch', async (req, res) => {
+    try {
+        const client = createClient(
+            "https://cloud.udk-berlin.de/remote.php/webdav",
+            {
+                username: process.env.NEXTCLOUD_USERNAME,
+                password: process.env.NEXTCLOUD_PASSWORD
+            })
+
+        let sketchFolders = [];
+        let directoryItems = await client.getDirectoryContents("/cosmodrome2020/" + req.params.id + "/" + req.params.name);
+        await directoryItems.forEach(async (v) => {
+            await sketchFolders.push(v.basename)
+        })
+
+        let txt = await client.getFileContents("/cosmodrome2020/" + req.params.id + "/" + req.params.name + "/" + req.params.sketch + "/sketch.js", { format: "text" });
+
+        res.render('sketch', {
+            sketch: txt
         })
 
     } catch (e) {
