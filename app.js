@@ -50,8 +50,7 @@ app.get('/projects/:id/:name', async (req, res) => {
 
         res.render('projects', {
             title: req.params.id,
-            files: sketchFolders,
-            thumbnails: thumbnailList
+            files: sketchFolders
         })
 
     } catch (e) {

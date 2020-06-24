@@ -2,19 +2,21 @@
 
 $(function () {
 
+    
+
     $('.topicList ul li').click(function () {
         var route = $(this).text()
         $('header').css('height', '0');
         $('.frontPageContainer').fadeOut('slow', function () {
-            // $('.sketchPageContainer').fadeIn();
-            // window.location="/" + route
             window.location = "/projects/" + route
         });
     })
 
     //go back to frontPage(by clicking goback button )
     $('#goback').click(function () {
-        window.location = "/"
+        $('body').fadeOut(function () {
+            window.location = "/"
+        })
     });
 
     //student list hover and click color
@@ -43,6 +45,7 @@ $(function () {
 })
 
 $(document).ready(function () {
-
+    $('body').css('display', 'none')
+    $('body').fadeIn('slow')
 });
 
