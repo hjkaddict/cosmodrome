@@ -12,13 +12,19 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-    // res.render('test')
     res.render('index')
+})
+
+app.get('/projects/:id/', (req, res) => {
+    res.render('projects', {
+        title: req.params.id,
+        files: ''
+    })
 })
 
 const { createClient } = require("webdav");
 
-app.get('/test', async (req, res) => {
+app.get('/projects/:id/:name', async (req, res) => {
     try {
         const client = createClient(
             "https://cloud.udk-berlin.de/remote.php/webdav",
@@ -26,8 +32,28 @@ app.get('/test', async (req, res) => {
                 username: process.env.NEXTCLOUD_USERNAME,
                 password: process.env.NEXTCLOUD_PASSWORD
             })
-        const directoryItems = await client.getDirectoryContents("/cosmodrome2020/06_diffuseLimitedAggregation/Dirk Erdmann");
-        res.send(directoryItems)
+
+        const sketchFolders = [];
+        const directoryItems = await client.getDirectoryContents("/cosmodrome2020/" + req.params.id + "/" + req.params.name);
+        await directoryItems.forEach(async (v) => {
+            await sketchFolders.push(v.basename)
+        })
+
+        // console.log(sketchFolders)
+        const thumbnailList = [];
+
+        // sketchFolders.forEach(async (v) => {
+        //     var thumbnailItems = await client.getFileContents("/cosmodrome2020/" + req.params.id + "/" + req.params.name + "/" + v + "/thumbnail.png")
+        //     console.log(thumbnailItems)
+        //     thumbnailList.push(thumbnailItems)
+        // })
+
+        res.render('projects', {
+            title: req.params.id,
+            files: sketchFolders,
+            thumbnails: thumbnailList
+        })
+
     } catch (e) {
         res.send(e)
     }

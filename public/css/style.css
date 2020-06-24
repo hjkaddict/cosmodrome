@@ -12,6 +12,10 @@ html {
     border: 5px dashed black;
 }
 
+.test {
+    font-size: 50px;
+}
+
 header {
     display: flex;
     align-items: flex-end;
@@ -83,7 +87,7 @@ header {
 }
 
 .sketchPageContainer {
-    display: none;
+    /* display: none; */
 }
 
 .studentListContainer {

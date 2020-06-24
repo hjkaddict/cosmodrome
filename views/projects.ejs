@@ -1,0 +1,55 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmodrome</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type='text/javascript'
+        src='https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js'></script>
+
+    <link rel="stylesheet" type="text/css" href="/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+
+    <script type="text/javascript" src="/js/function.js"></script>
+
+
+</head>
+
+<body>
+    <div class="sketchPageContainer">
+        <div class="studentListContainer">
+            <div class="goBack">
+                <img id="goback" src="/img/goback.png">
+            </div>
+            <ul>
+                <div class="titleContainer"><%= title %></div>
+                <li>Antonio Castles</li>
+                <li>Bian Zhiping</li>
+                <li>Dirk Erdmann</li>
+                <li>Hibiki Ishijima</li>
+                <li>Hyungjoong Kim</li>
+                <li>Julius Führer</li>
+                <li>Julius Winckler</li>
+                <li>Mattia Friso</li>
+                <li>Niklas Söder</li>
+                <li>Niklas Thran</li>
+                <li>Özcan Ertek</li>
+                <li>Qingyun Zhang</li>
+                <li>Tatiana Pakhmutova</li>
+            </ul>
+        </div>
+        <div class="sketchListContainer">
+            <% for(var i = 0; i < files.length; i++) { %>
+            <div class="sketchList"><%= files[i] %> <img src=""></div>
+            <% } %>
+
+            <%= thumbnails %>
+        </div>
+
+
+    </div>
+
+</body>
+
+</html>
