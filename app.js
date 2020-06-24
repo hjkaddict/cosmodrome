@@ -18,7 +18,8 @@ app.get('/', (req, res) => {
 app.get('/projects/:id/', (req, res) => {
     res.render('projects', {
         title: req.params.id,
-        files: ''
+        files: '',
+        thumbnails: ''
     })
 })
 
