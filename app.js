@@ -2,15 +2,14 @@ const express = require('express')
 const ejs = require('ejs')
 const path = require('path')
 const fs = require('fs')
-const { Server } = require('ws');
 const http = require('http')
-
+var WebSocketServer = require("ws").Server
 const PORT = process.env.PORT || 3001;
-const PORT2 = 8081;
 
 require('dotenv').config()
 
 const app = express()
+
 
 const publicDirectoryPath = path.join(__dirname, '../public')
 
@@ -104,10 +103,15 @@ app.listen(PORT, function () {
     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
 
-const server = express()
-    .listen(PORT2, () => console.log(`Listening on ${PORT2}`));
 
-const wss = new Server({ server });
+var server = http.createServer(app)
+// var port = process.env.PORT || 3001
+// server.listen(port)
+
+// console.log("http server listening on %d", port)
+
+var wss = new WebSocketServer({server: server, port: 443})
+console.log("websocket server created")
 
 
 wss.on('connection', async function (socket) {
