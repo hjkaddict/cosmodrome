@@ -34,9 +34,14 @@
 
     <div class="frontPageContainer">
         <div class="sketchListContainer">
-           
+            <% for(var i = 0; i < files.length; i++) { %>
+            <div class="sketchList">
+                <div>
+                    <%= files[i].title %>
+                </div>
+            </div>
+            <% } %>
         </div>
-        
 
         <div class="projectContainer">
             <div class="topicContainer">

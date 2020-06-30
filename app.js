@@ -2,28 +2,89 @@ const express = require('express')
 const ejs = require('ejs')
 const path = require('path')
 const fs = require('fs')
+var WSS = require('ws').Server;
+
 require('dotenv').config()
 
 const app = express()
 
 const publicDirectoryPath = path.join(__dirname, '../public')
 
+const middle = require('./middleware/middle')
+
 app.set('view engine', 'ejs')
 app.use(express.static('public'));
 
-app.get('/', (req, res) => {
-    res.render('index')
-})
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json())
 
-app.get('/projects/:id/', (req, res) => {
-    res.render('projects', {
-        title: req.params.id,
-        files: '',
-        thumbnails: ''
-    })
-})
 
 const { createClient } = require("webdav");
+const { toUnicode } = require('punycode');
+var wss = new WSS({ port: 8081 });
+
+wss.on('connection', async function (socket) {
+    console.log('Opened connection in Server 🎉');
+
+    const client = await createClient(
+        "https://cloud.udk-berlin.de/remote.php/webdav",
+        {
+            username: process.env.NEXTCLOUD_USERNAME,
+            password: process.env.NEXTCLOUD_PASSWORD
+        })
+
+    const directoryItems = await client.getDirectoryContents("/cosmodrome2020/projectFiles");
+
+    directoryItems.forEach(async (item) => {
+        var thumbnail = await client.getFileContents("/cosmodrome2020/projectFiles/" + item.basename + "/thumbnail.png")
+        
+        // console.log(thumbnail)
+        socket.send(thumbnail)
+    })
+
+    // Send data back to the client
+    // var json = JSON.stringify({ message: directoryItems });
+    // socket.send(json);
+
+    // When data is received
+    socket.on('message', function (message) {
+        console.log('Received: ' + message);
+    });
+
+    // The connection was closed
+    socket.on('close', function () {
+        console.log('Closed Connection 😱');
+    });
+
+});
+
+app.get('/', (req, res) => {
+
+
+    try {
+        res.render('index', {
+            files: req.values,
+            thumbnails: req.thumbnails
+        })
+    } catch (e) {
+
+    }
+})
+
+
+
+
+app.get('/projects/:id/', middle, async (req, res) => {
+    try {
+        res.render('projects', {
+            title: req.params.id,
+            files: req.values
+        })
+
+    } catch (e) {
+
+    }
+})
 
 app.get('/projects/:id/:name', async (req, res) => {
     try {
@@ -39,14 +100,6 @@ app.get('/projects/:id/:name', async (req, res) => {
         await directoryItems.forEach(async (v) => {
             await sketchFolders.push(v.basename)
         })
-
-        const thumbnailList = [];
-
-        // sketchFolders.forEach(async (v) => {
-        //     var thumbnailItems = await client.getFileContents("/cosmodrome2020/" + req.params.id + "/" + req.params.name + "/" + v + "/sketch2.js")
-        //     console.log(thumbnailItems)
-        //     thumbnailList.push(thumbnailItems)
-        // })
 
         res.render('projects', {
             title: req.params.id,
