@@ -3,6 +3,7 @@ const ejs = require('ejs')
 const path = require('path')
 const fs = require('fs')
 var WSS = require('ws').Server;
+var http = require('http')
 
 require('dotenv').config()
 
@@ -21,7 +22,14 @@ app.use(express.json())
 
 const { createClient } = require("webdav");
 const { toUnicode } = require('punycode');
-var wss = new WSS({ port: 8081 });
+
+var server = http.createServer(app)
+
+// var wss = new WSS({ port: 8081 });
+var wss = new WSS({
+    server: server, 
+    port: 8081}
+)
 
 wss.on('connection', async function (socket) {
     console.log('Opened connection in Server 🎉');
@@ -37,7 +45,7 @@ wss.on('connection', async function (socket) {
 
     directoryItems.forEach(async (item) => {
         var thumbnail = await client.getFileContents("/cosmodrome2020/projectFiles/" + item.basename + "/thumbnail.png")
-        
+
         // console.log(thumbnail)
         socket.send(thumbnail)
     })
