@@ -25,7 +25,7 @@ function encode(input) {
     return output;
 }
 
-var socket = new WebSocket('ws://localhost:8081/');
+var socket = new WebSocket('ws://cosmodrome2020.herokuapp.com:8081/');
 
 // When a connection is made
 socket.onopen = function () {
