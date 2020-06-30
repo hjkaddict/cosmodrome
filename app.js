@@ -2,7 +2,8 @@ const express = require('express')
 const ejs = require('ejs')
 const path = require('path')
 const fs = require('fs')
-const { Server } = require('ws');
+const WebSocket = require('ws');
+const http = require('http')
 
 require('dotenv').config()
 
@@ -20,9 +21,6 @@ app.use(express.json())
 
 
 const { createClient } = require("webdav");
-
-const server = express()
-
 
 app.get('/', (req, res) => {
 
@@ -104,7 +102,11 @@ app.listen(process.env.PORT || 3001, function () {
     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
 
-var wss = new Server({ server });
+const server = http.createServer(app);
+const wss = new WebSocket.Server({ server: server, port: 8081, path: "/ws" });
+
+
+
 
 wss.on('connection', async function (socket) {
     console.log('Opened connection in Server 🎉');
@@ -138,5 +140,6 @@ wss.on('connection', async function (socket) {
     socket.on('close', function () {
         console.log('Closed Connection 😱');
     });
+
 
 });

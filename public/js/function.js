@@ -1,6 +1,6 @@
 var host = location.origin.replace(/^http/, 'ws')
 // console.log(host)
-var socket = new WebSocket(host)
+var socket = new WebSocket("ws://cosmodrome2020.herokuapp.com:8081/ws")
 
 // When a connection is made
 socket.onopen = function () {
