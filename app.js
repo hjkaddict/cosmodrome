@@ -2,8 +2,7 @@ const express = require('express')
 const ejs = require('ejs')
 const path = require('path')
 const fs = require('fs')
-var WSS = require('ws').Server;
-var http = require('http')
+const { Server } = require('ws');
 
 require('dotenv').config()
 
@@ -21,53 +20,11 @@ app.use(express.json())
 
 
 const { createClient } = require("webdav");
-const { toUnicode } = require('punycode');
 
-var server = http.createServer(app)
+const server = express()
 
-// var wss = new WSS({ port: 8081 });
-var wss = new WSS({
-    server: server, 
-    port: 8081}
-)
-
-wss.on('connection', async function (socket) {
-    console.log('Opened connection in Server 🎉');
-
-    const client = await createClient(
-        "https://cloud.udk-berlin.de/remote.php/webdav",
-        {
-            username: process.env.NEXTCLOUD_USERNAME,
-            password: process.env.NEXTCLOUD_PASSWORD
-        })
-
-    const directoryItems = await client.getDirectoryContents("/cosmodrome2020/projectFiles");
-
-    directoryItems.forEach(async (item) => {
-        var thumbnail = await client.getFileContents("/cosmodrome2020/projectFiles/" + item.basename + "/thumbnail.png")
-
-        // console.log(thumbnail)
-        socket.send(thumbnail)
-    })
-
-    // Send data back to the client
-    // var json = JSON.stringify({ message: directoryItems });
-    // socket.send(json);
-
-    // When data is received
-    socket.on('message', function (message) {
-        console.log('Received: ' + message);
-    });
-
-    // The connection was closed
-    socket.on('close', function () {
-        console.log('Closed Connection 😱');
-    });
-
-});
 
 app.get('/', (req, res) => {
-
 
     try {
         res.render('index', {
@@ -78,9 +35,6 @@ app.get('/', (req, res) => {
 
     }
 })
-
-
-
 
 app.get('/projects/:id/', middle, async (req, res) => {
     try {
@@ -148,4 +102,41 @@ app.get('/projects/:id/:name/:sketch', async (req, res) => {
 
 app.listen(process.env.PORT || 3001, function () {
     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
+
+var wss = new Server({ server });
+
+wss.on('connection', async function (socket) {
+    console.log('Opened connection in Server 🎉');
+
+    const client = await createClient(
+        "https://cloud.udk-berlin.de/remote.php/webdav",
+        {
+            username: process.env.NEXTCLOUD_USERNAME,
+            password: process.env.NEXTCLOUD_PASSWORD
+        })
+
+    const directoryItems = await client.getDirectoryContents("/cosmodrome2020/projectFiles");
+
+    directoryItems.forEach(async (item) => {
+        var thumbnail = await client.getFileContents("/cosmodrome2020/projectFiles/" + item.basename + "/thumbnail.png")
+
+        // console.log(thumbnail)
+        socket.send(thumbnail)
+    })
+
+    // Send data back to the client
+    // var json = JSON.stringify({ message: directoryItems });
+    // socket.send(json);
+
+    // When data is received
+    socket.on('message', function (message) {
+        console.log('Received: ' + message);
+    });
+
+    // The connection was closed
+    socket.on('close', function () {
+        console.log('Closed Connection 😱');
+    });
+
 });
