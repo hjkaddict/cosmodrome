@@ -2,8 +2,11 @@ const express = require('express')
 const ejs = require('ejs')
 const path = require('path')
 const fs = require('fs')
-const WebSocket = require('ws');
+const { Server } = require('ws');
 const http = require('http')
+
+const PORT = process.env.PORT || 3001;
+const PORT2 = 8081;
 
 require('dotenv').config()
 
@@ -97,15 +100,14 @@ app.get('/projects/:id/:name/:sketch', async (req, res) => {
     }
 })
 
-
-app.listen(process.env.PORT || 3001, function () {
+app.listen(PORT, function () {
     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
 
-const server = http.createServer(app);
-const wss = new WebSocket.Server({ server: server, port: 8081, path: "/ws" });
+const server = express()
+    .listen(PORT2, () => console.log(`Listening on ${PORT2}`));
 
-
+const wss = new Server({ server });
 
 
 wss.on('connection', async function (socket) {
