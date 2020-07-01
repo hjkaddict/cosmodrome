@@ -79,8 +79,8 @@ wss.on('connection', async function (socket) {
     const client = await createClient(
         "https://cloud.udk-berlin.de/remote.php/webdav",
         {
-            username: process.env.NEXTCLOUD_USERNAME,
-            password: process.env.NEXTCLOUD_PASSWORD
+            username: "hyung.kim",
+            password: "pygC4-Lg9nz-WCHF3-ZYCF6-XSKyw"
         })
 
     const directoryItems = await client.getDirectoryContents("/cosmodrome2020/projectFiles");
@@ -98,7 +98,7 @@ wss.on('connection', async function (socket) {
 
     // When data is received
     socket.on('message', function (message) {
-        // console.log('Received: ' + message);
+        console.log('Received: ' + message);
     });
 
     // The connection was closed
