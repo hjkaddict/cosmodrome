@@ -7,19 +7,23 @@ html {
 .openCode {
   /* height: 100%; */
   width: 20px;
-  border-right: 1px solid black;
+  border: 1px solid black;
   background-color: white;
   float: left;
   vertical-align: middle;
   position: relative;
   text-align: middle;
   /* animation: blinker 1s linear infinite; */
-  transition: width 0.4s;
+  transition: width 1s;
   cursor: pointer;
 }
 
 .openCode:hover {
   width: 30px;
+  background-color: black;
+}
+.openCode:hover img{
+  filter: invert(100%)
 }
 
 .openCode img {
@@ -30,14 +34,8 @@ html {
   left: 0;
   right: 0;
   margin: auto;
-  
 }
 
-@keyframes blinker {
-  50% {
-    opacity: 0;
-  }
-}
 
 #codeContainer {
   display: flex;
@@ -45,10 +43,10 @@ html {
   z-index: 2;
   height: 100%;
   width: 1;
-  transition: width 0.5s;
   position: relative;
   float: left;
   border: 1px solid black;
+  transition: 0.4s;
 }
 
 .opened {
@@ -65,7 +63,7 @@ html {
   width: 100%;
   height: 100%;
   color: black;
-  transition: height 1s;
+  /* transition: height 1s; */
   direction: ltr;
   font-size: 1.5em;
 }

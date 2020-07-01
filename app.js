@@ -86,12 +86,19 @@ wss.on('connection', async function (socket) {
     const directoryItems = await client.getDirectoryContents("/cosmodrome2020/projectFiles");
 
     directoryItems.forEach(async (item) => {
-        var thumbnail = await client.getFileContents("/cosmodrome2020/projectFiles/" + item.basename + "/thumbnail.png")
 
-        socket.send(thumbnail)
-        socket.send(item.basename)
+        var check = await client.getDirectoryContents("/cosmodrome2020/projectFiles/" + item.basename)
 
-        // console.log(item.basename)
+        if (check.length < 2) {
+
+        } else {
+            var thumbnail = await client.getFileContents("/cosmodrome2020/projectFiles/" + item.basename + "/thumbnail.png")
+
+            socket.send(thumbnail)
+            socket.send(item.basename)
+        }
+
+
     })
 
     // Send data back to the client

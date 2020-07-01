@@ -32,6 +32,29 @@
                 var canvasWidth = $('.p5Canvas').outerWidth()
                 var canvasHeight = $('.p5Canvas').outerHeight()
                 $('.openCode').css('height', canvasHeight)
+
+                $('.openCode').on('click', function () {
+                    $('#codeContainer').css('width', $('body').width() - canvasWidth - 100)
+
+                    if ($('body').find('.opened').length === 0) {
+                        $('#codeContainer').animate({
+                            'width': $('body').width() - canvasWidth - 100
+                        }, function () {
+                            $('.openCode img').attr('src', '/img/arrow-left.png')
+                            $('.openCode').css('animation', 'blinker 1s linear infinite')
+                        }).addClass('opened')
+                    } else {
+                        $('#codeContainer').animate({
+                            'width': '1'
+                        }, function () {
+                            $('.openCode img').attr('src', '/img/arrow-right.png')
+                            $('.openCode').css('animation', 'none')
+                            // $('.openCode').css('animation', 'blinker 1s linear infinite')
+
+                        }).removeClass('opened')
+                    }
+                })
+
             })
         })
     </script>
@@ -49,27 +72,27 @@
 </body>
 
 <script>
-    $('.openCode').on('click', function () {
-        $('#codeContainer').css('width', '40vw')
+    // $('.openCode').on('click', function () {
+    //     $('#codeContainer').css('width', '20vw')
 
-        if ($('body').find('.opened').length === 0) {
-            $('#codeContainer').animate({
-                'width': '40vw'
-            }, function () {
-                $('.openCode img').attr('src', '/img/arrow-left.png')
-                $('.openCode').css('animation', 'blinker 1s linear infinite')
-            }).addClass('opened')
-        } else {
-            $('#codeContainer').animate({
-                'width': '1'
-            }, function () {
-                $('.openCode img').attr('src', '/img/arrow-right.png')
-                $('.openCode').css('animation', 'none')
-                // $('.openCode').css('animation', 'blinker 1s linear infinite')
+    //     if ($('body').find('.opened').length === 0) {
+    //         $('#codeContainer').animate({
+    //             'width': '20vw'
+    //         }, function () {
+    //             $('.openCode img').attr('src', '/img/arrow-left.png')
+    //             $('.openCode').css('animation', 'blinker 1s linear infinite')
+    //         }).addClass('opened')
+    //     } else {
+    //         $('#codeContainer').animate({
+    //             'width': '1'
+    //         }, function () {
+    //             $('.openCode img').attr('src', '/img/arrow-right.png')
+    //             $('.openCode').css('animation', 'none')
+    //             // $('.openCode').css('animation', 'blinker 1s linear infinite')
 
-            }).removeClass('opened')
-        }
-    })
+    //         }).removeClass('opened')
+    //     }
+    // })
 </script>
 
 </html>
