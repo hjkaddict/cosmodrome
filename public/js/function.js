@@ -39,7 +39,7 @@ socket.onmessage = function (event) {
             click: () => window.location = "/" + str
         })
 
-        $('.' + objectID).append(newDOM2).hide().fadeIn(500)
+        $('.' + objectID).append(newDOM2).hide().fadeIn(1500)
 
     }
 }
