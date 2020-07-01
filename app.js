@@ -73,6 +73,28 @@ app.get('/projects/:id/:name', async (req, res) => {
     // }
 })
 
+app.get('/:id', async (req, res) => {
+    try {
+        const client = createClient(
+            "https://cloud.udk-berlin.de/remote.php/webdav",
+            {
+                username: process.env.NEXTCLOUD_USERNAME,
+                password: process.env.NEXTCLOUD_PASSWORD
+            })
+        const directoryItems = await client.getDirectoryContents("/cosmodrome2020/projectFiles/" + req.params.id);
+
+        let txt = await client.getFileContents("/cosmodrome2020/projectFiles/" + req.params.id + "/sketch.js", { format: "text" });
+
+        res.render('sketch', {
+            title: 'sketch', 
+            sketch: txt
+        })
+
+    } catch (e) {
+
+    }
+})
+
 app.get('/projects/:id/:name/:sketch', async (req, res) => {
     // try {
     //     const client = createClient(
@@ -109,11 +131,11 @@ var server = app.listen(PORT, function () {
 })
 
 var wss = new WebSocket({ server })
-console.log("websocket server created")
+// console.log("websocket server created")
 
 
 wss.on('connection', async function (socket) {
-    console.log('Opened connection in Server 🎉');
+    // console.log('Opened connection in Server 🎉');
 
     const client = await createClient(
         "https://cloud.udk-berlin.de/remote.php/webdav",
@@ -126,7 +148,7 @@ wss.on('connection', async function (socket) {
 
     directoryItems.forEach(async (item) => {
         var thumbnail = await client.getFileContents("/cosmodrome2020/projectFiles/" + item.basename + "/thumbnail.png")
-        
+
         socket.send(thumbnail)
         socket.send(item.basename)
     })
@@ -137,12 +159,12 @@ wss.on('connection', async function (socket) {
 
     // When data is received
     socket.on('message', function (message) {
-        console.log('Received: ' + message);
+        // console.log('Received: ' + message);
     });
 
     // The connection was closed
     socket.on('close', function () {
-        console.log('Closed Connection 😱');
+        console.log('Closed Connection');
     });
 
 

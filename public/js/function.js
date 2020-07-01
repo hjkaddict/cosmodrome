@@ -3,11 +3,11 @@ var socket = new WebSocket(host)
 
 // When a connection is made
 socket.onopen = function () {
-    console.log('Opened connection 🎉');
+    // console.log('Opened connection');
 
     // send data to the server
-    var json = JSON.stringify({ message: 'Hello 👋' });
-    socket.send(json);
+    // var json = JSON.stringify({ message: 'Hello 👋' });
+    // socket.send(json);
 }
 
 // When data is received
@@ -29,15 +29,15 @@ socket.onmessage = async function (event) {
 
     } else if (typeof (event.data) === 'string') {
         var str = event.data;
-
+        
         var author = str.slice(str.indexOf("[") + 1, str.lastIndexOf("]"));
         var title = str.slice(str.indexOf("]") + 1)
 
-        console.log(title)
         var newDOM2 = $('<div/>', {
             class: 'sketchInfo',
             html: "<p class='title'>" + title + "</p>" +
-                "<p class='author' style='font-size:15px'>" + author + "</p>"
+                "<p class='author' style='font-size:15px'>" + author + "</p>",
+            click: () => window.location = "/" + str
         })
 
         $('.' + objectID).append(newDOM2).hide().fadeIn(500)
@@ -102,7 +102,6 @@ $(async function () {
     //     window.location = window.location.href + "/" + filename
     // })
 
-    
 
 })
 
