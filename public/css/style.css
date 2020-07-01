@@ -45,10 +45,14 @@ header {
 }
 
 .projectIntroContainer {
-    padding: 20px;
+    padding: 0 20px ;
     font-size: 15px;
     font-weight: bold;
-    /* border-bottom: 2px solid black; */
+    border-bottom: 2px solid black;
+    line-height: 1.2em;
+}
+
+.projectIntroContainer p {
     line-height: 1.2em;
 }
 

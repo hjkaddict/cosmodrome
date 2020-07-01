@@ -79,6 +79,8 @@ $(async function () {
                 $('.projectContainer').css('border-bottom', 'none')
             })
 
+            
+
             $(this).removeClass('filterOpened')
         }
 
