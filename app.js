@@ -36,90 +36,27 @@ app.get('/', (req, res) => {
     }
 })
 
-app.get('/projects/:id/', middle, async (req, res) => {
-    try {
-        res.render('projects', {
-            title: req.params.id,
-            files: req.values
-        })
+// app.get('/:id', async (req, res) => {
+//     try {
+//         const client = createClient(
+//             "https://cloud.udk-berlin.de/remote.php/webdav",
+//             {
+//                 username: process.env.NEXTCLOUD_USERNAME,
+//                 password: process.env.NEXTCLOUD_PASSWORD
+//             })
+//         const directoryItems = await client.getDirectoryContents("/cosmodrome2020/projectFiles/" + req.params.id);
 
-    } catch (e) {
+//         let txt = await client.getFileContents("/cosmodrome2020/projectFiles/" + req.params.id + "/sketch.js", { format: "text" });
 
-    }
-})
+//         res.render('sketch', {
+//             title: 'sketch', 
+//             sketch: txt
+//         })
 
-app.get('/projects/:id/:name', async (req, res) => {
-    // try {
-    //     const client = createClient(
-    //         "https://cloud.udk-berlin.de/remote.php/webdav",
-    //         {
-    //             username: process.env.NEXTCLOUD_USERNAME,
-    //             password: process.env.NEXTCLOUD_PASSWORD
-    //         })
-
-    //     const sketchFolders = [];
-    //     const directoryItems = await client.getDirectoryContents("/cosmodrome2020/" + req.params.id + "/" + req.params.name);
-    //     await directoryItems.forEach(async (v) => {
-    //         await sketchFolders.push(v.basename)
-    //     })
-
-    //     res.render('projects', {
-    //         title: req.params.id,
-    //         files: sketchFolders
-    //     })
-
-    // } catch (e) {
-    //     res.send(e)
-    // }
-})
-
-app.get('/:id', async (req, res) => {
-    try {
-        const client = createClient(
-            "https://cloud.udk-berlin.de/remote.php/webdav",
-            {
-                username: process.env.NEXTCLOUD_USERNAME,
-                password: process.env.NEXTCLOUD_PASSWORD
-            })
-        const directoryItems = await client.getDirectoryContents("/cosmodrome2020/projectFiles/" + req.params.id);
-
-        let txt = await client.getFileContents("/cosmodrome2020/projectFiles/" + req.params.id + "/sketch.js", { format: "text" });
-
-        res.render('sketch', {
-            title: 'sketch', 
-            sketch: txt
-        })
-
-    } catch (e) {
-
-    }
-})
-
-app.get('/projects/:id/:name/:sketch', async (req, res) => {
-    // try {
-    //     const client = createClient(
-    //         "https://cloud.udk-berlin.de/remote.php/webdav",
-    //         {
-    //             username: process.env.NEXTCLOUD_USERNAME,
-    //             password: process.env.NEXTCLOUD_PASSWORD
-    //         })
-
-    //     let sketchFolders = [];
-    //     let directoryItems = await client.getDirectoryContents("/cosmodrome2020/" + req.params.id + "/" + req.params.name);
-    //     await directoryItems.forEach(async (v) => {
-    //         await sketchFolders.push(v.basename)
-    //     })
-
-    //     let txt = await client.getFileContents("/cosmodrome2020/" + req.params.id + "/" + req.params.name + "/" + req.params.sketch + "/sketch.js", { format: "text" });
-
-    //     res.render('sketch', {
-    //         sketch: txt
-    //     })
-
-    // } catch (e) {
-    //     res.send(e)
-    // }
-})
+//     } catch (e) {
+//         console.log(e)
+//     }
+// })
 
 // app.listen(PORT, function () {
 //     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
