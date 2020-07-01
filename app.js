@@ -84,13 +84,13 @@ wss.on('connection', async function (socket) {
         })
 
     const directoryItems = await client.getDirectoryContents("/cosmodrome2020/projectFiles");
-    console.log(directoryItems)
-    // directoryItems.forEach(async (item) => {
-    //     var thumbnail = await client.getFileContents("/cosmodrome2020/projectFiles/" + item.basename + "/thumbnail.png")
 
-    //     socket.send(thumbnail)
-    //     socket.send(item.basename)
-    // })
+    directoryItems.forEach(async (item) => {
+        var thumbnail = await client.getFileContents("/cosmodrome2020/projectFiles/" + item.basename + "/thumbnail.png")
+
+        socket.send(thumbnail)
+        socket.send(item.basename)
+    })
 
     // Send data back to the client
     // var json = JSON.stringify({ message: directoryItems });

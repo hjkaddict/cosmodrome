@@ -15,7 +15,6 @@ socket.onopen = function () {
 var objectID = 0;
 
 socket.onmessage = function (event) {
-    console.log(event.data)
     if (typeof (event.data) === 'object') {
         objectID++;
         var newDOM = $('<div/>', {
