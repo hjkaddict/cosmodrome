@@ -2,7 +2,6 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %></title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type='text/javascript'
         src='https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js'></script>
@@ -22,7 +21,7 @@
                 <img id="goback" src="/img/goback.png">
             </div>
             <ul>
-                <div class="titleContainer"><%= title %></div>
+                <div class="titleContainer"></div>
                 <li>Antonio Castles</li>
                 <li>Bian Zhiping</li>
                 <li>Dirk Erdmann</li>
@@ -39,13 +38,7 @@
             </ul>
         </div>
         <div class="sketchListContainer">
-            <% for(var i = 0; i < files.length; i++) { %>
-            <div class="sketchList">
-                <div>
-                    <%= files %>
-                </div>
-            </div>
-            <% } %>
+            <div class="sketchList"></div>
         </div>
 
         <!-- <div id="sketchContainer">

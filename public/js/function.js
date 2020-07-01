@@ -31,16 +31,19 @@ socket.onmessage = function (event) {
 
         var author = str.slice(str.indexOf("[") + 1, str.lastIndexOf("]"));
         var title = str.slice(str.indexOf("]") + 1)
+        var topic = str.slice(0, str.indexOf("_["))
 
         var newDOM2 = $('<div/>', {
             class: 'sketchInfo',
-            html: "<p class='title'>" + title + "</p>" +
-                "<p class='author' style='font-size:15px'>" + author + "</p>",
-            click: () => $('.frontPageContainer').fadeOut('fast', function () { window.location = "/" + str })
+            html:
+                "<p class='title'>" + title + "</p>" +
+                "<p class='author' style='font-size:15px'>" +
+                author + "</p>",
+            click: () => $('.frontPageContainer').fadeOut('fast', function () { window.location = "/sketches/" + str })
         })
-
+        $('.' + objectID).addClass(title);
+        $('.' + objectID).addClass(topic);
         $('.' + objectID).append(newDOM2).hide().fadeIn(1500)
-
     }
 }
 
@@ -62,13 +65,45 @@ window.addEventListener('beforeunload', function () {
 
 $(async function () {
 
-    $('.topicList ul li').click(function () {
-        var route = $(this).text()
-        $('header').css('height', '0');
-        $('.frontPageContainer').fadeOut('slow', function () {
-            window.location = "/projects/" + route
-        });
+    $('.filterBtn').click(function () {
+        if ($('.filterOpened').length === 0) {
+            $('.projectContainer').animate({
+                height: '300px'
+            }, 500)
+            $('.projectContainer').css('border-bottom', '2px solid black')
+            $(this).addClass('filterOpened')
+        } else {
+            $('.projectContainer').animate({
+                height: '0'
+            }, 500, function () {
+                $('.projectContainer').css('border-bottom', 'none')
+            })
+
+            $(this).removeClass('filterOpened')
+        }
+
     })
+
+    $('.showAllSketches').click(function () {
+        $(this).css('color', 'red')
+        $('.topicList ul li').css('color', 'black')
+        $('.sketchList').fadeIn();
+        console.log('a')
+    })
+
+    $('.topicList ul li').click(function () {
+        let topic = $(this).text()
+        $('.sketchList').hide();
+        $('.' + topic).fadeIn()
+
+        $('.showAllSketches').css('color', 'black')
+
+        $('.topicList ul li').css('color', 'black')
+        $(this).css('color', 'red')
+
+    })
+
+
 
     //go back to frontPage(by clicking goback button )
     $('#goback').click(function () {

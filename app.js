@@ -28,15 +28,13 @@ app.get('/', (req, res) => {
 
     try {
         res.render('index', {
-            files: req.values,
-            thumbnails: req.thumbnails
         })
     } catch (e) {
 
     }
 })
 
-app.get('/:id', async (req, res) => {
+app.get('/sketches/:id', async (req, res) => {
     try {
         const client = createClient(
             "https://cloud.udk-berlin.de/remote.php/webdav",
@@ -49,7 +47,7 @@ app.get('/:id', async (req, res) => {
         let txt = await client.getFileContents("/cosmodrome2020/projectFiles/" + req.params.id + "/sketch.js", { format: "text" });
 
         res.render('sketch', {
-            title: 'sketch', 
+            title: 'sketch',
             sketch: txt
         })
 
@@ -58,9 +56,13 @@ app.get('/:id', async (req, res) => {
     }
 })
 
-// app.listen(PORT, function () {
-//     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
-// });
+// app.get('/projects:/:id', async (req, res) => {
+//     try {
+//         res.render('projects')
+//     } catch (e) {
+
+//     }
+// })
 
 
 var server = app.listen(PORT, function () {
@@ -88,6 +90,8 @@ wss.on('connection', async function (socket) {
 
         socket.send(thumbnail)
         socket.send(item.basename)
+
+        console.log(item.basename)
     })
 
     // Send data back to the client
