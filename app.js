@@ -91,7 +91,7 @@ wss.on('connection', async function (socket) {
         socket.send(thumbnail)
         socket.send(item.basename)
 
-        console.log(item.basename)
+        // console.log(item.basename)
     })
 
     // Send data back to the client

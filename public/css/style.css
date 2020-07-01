@@ -15,7 +15,6 @@ html {
     font-size: 50px;
 }
 
-
 header {
     display: flex;
     align-items: flex-end;
@@ -45,7 +44,7 @@ header {
 }
 
 .projectIntroContainer {
-    padding: 0 20px ;
+    padding: 0 20px;
     font-size: 15px;
     font-weight: bold;
     border-bottom: 2px solid black;
@@ -64,6 +63,31 @@ header {
     padding: 5px 0;
 }
 
+.filterOpened {
+    background-color: black;
+    color: white;
+}
+
+.filterOpened:hover {
+    background-color: white;
+    color: black;
+}
+
+@keyframes blinker {
+    0% {
+        background: white;
+        color: black;
+    }
+    50% {
+        background: black;
+        color: white;
+    }
+    100% {
+        background: white;
+        color: black;
+    }
+}
+
 .filterBtn:hover {
     background: black;
     color: white;
@@ -72,6 +96,7 @@ header {
 .projectContainer {
     /* margin: 0px 0; */
     padding: 0 20px;
+    color: lightgray;
     /* transition: height 1s; */
     max-height: auto;
     overflow: hidden;
@@ -86,10 +111,11 @@ header {
 
 .topicTitle {
     font-size: 25px;
-    margin: 10px 0 0 0 ;
+    margin: 10px 0 0 0;
 }
 
 .showAllSketches {
+    color: black;
     margin: 0 0 20px 0;
     transition: color 0.5s;
     cursor: pointer;
@@ -97,7 +123,7 @@ header {
 }
 
 .showAllSketches:hover {
-    color: red;
+    color: black;
 }
 
 .topicList {
@@ -112,7 +138,7 @@ header {
 }
 
 .topicList ul li:hover {
-    color: red;
+    color: black;
 }
 
 .creditContainer {
@@ -197,7 +223,6 @@ header {
     height: 100%;
 }
 
-
 .sketchInfo {
     display: none;
     position: absolute;
@@ -205,10 +230,9 @@ header {
     height: 100%;
     text-align: center;
     z-index: 2;
-    
 }
 
-.sketchList .title{
+.sketchList .title {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -217,7 +241,7 @@ header {
     font-size: 25px;
 }
 
-.sketchList .author{
+.sketchList .author {
     position: absolute;
     left: 50%;
     bottom: 20px;
@@ -225,7 +249,6 @@ header {
     width: 100%;
     font-size: 25px;
 }
-
 
 #sketchContainer {
     border: 2px solid black;

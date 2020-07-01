@@ -79,7 +79,7 @@ $(async function () {
                 $('.projectContainer').css('border-bottom', 'none')
             })
 
-            
+
 
             $(this).removeClass('filterOpened')
         }
@@ -87,10 +87,10 @@ $(async function () {
     })
 
     $('.showAllSketches').click(function () {
-        $(this).css('color', 'red')
-        $('.topicList ul li').css('color', 'black')
+        $('.topicTitle').css('color', 'lightgray')
+        $(this).css('color', 'black')
+        $('.topicList ul li').css('color', 'lightgray')
         $('.sketchList').fadeIn();
-        console.log('a')
     })
 
     $('.topicList ul li').click(function () {
@@ -98,13 +98,15 @@ $(async function () {
         $('.sketchList').hide();
         $('.' + topic).fadeIn()
 
-        $('.showAllSketches').css('color', 'black')
+        $('.showAllSketches').css('color', 'lightgray')
+        $('.topicList ul li').css('color', 'lightgray')
 
-        $('.topicList ul li').css('color', 'black')
-        $(this).css('color', 'red')
+        $('.topicTitle').css('color', 'lightgray')
+        $(this).parent().parent().siblings('.topicTitle').css('color', 'black')
+
+        $(this).css('color', 'black')
 
     })
-
 
 
     //go back to frontPage(by clicking goback button )
