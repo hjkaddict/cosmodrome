@@ -48,7 +48,7 @@ header {
     padding: 20px;
     font-size: 15px;
     font-weight: bold;
-    border-bottom: 2px solid black;
+    /* border-bottom: 2px solid black; */
     line-height: 1.2em;
 }
 
@@ -126,7 +126,6 @@ header {
     display: flex;
     align-items: center;
     border-bottom: 2px solid black;
-    ;
     transition: height 3s;
 }
 

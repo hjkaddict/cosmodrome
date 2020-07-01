@@ -68,7 +68,7 @@ $(async function () {
     $('.filterBtn').click(function () {
         if ($('.filterOpened').length === 0) {
             $('.projectContainer').animate({
-                height: '300px'
+                height: '310px'
             }, 500)
             $('.projectContainer').css('border-bottom', '2px solid black')
             $(this).addClass('filterOpened')
