@@ -7,8 +7,8 @@
     <link rel="stylesheet" type="text/css" href="/css/reset.css">
     <script src="codemirror/lib/codemirror.js"></script>
     <link rel="stylesheet" href="codemirror/lib/codemirror.css">
-    <link rel="stylesheet" href="codemirror/theme/night.css">
-    <script src="codemirror/mode/javascript/javascript.js"></script>
+    <link rel="stylesheet" href="codemirror/theme/3024-night.css">
+    <script src="codemirror/javascript.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js"></script>
 
@@ -25,13 +25,12 @@
             const myCodeMirror = CodeMirror(document.getElementById("codeContainer"), {
                 value: js,
                 mode: "javascript",
-                theme: 'night'
+                theme: '3024-night'
             });
 
             $('.p5Canvas').ready(function () {
                 var canvasWidth = $('.p5Canvas').outerWidth()
                 var canvasHeight = $('.p5Canvas').outerHeight()
-                console.log(canvasWidth)
                 $('.openCode').css('height', canvasHeight)
             })
         })
