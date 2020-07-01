@@ -79,8 +79,8 @@ wss.on('connection', async function (socket) {
     const client = await createClient(
         "https://cloud.udk-berlin.de/remote.php/webdav",
         {
-            username: "hyung.kim",
-            password: "pygC4-Lg9nz-WCHF3-ZYCF6-XSKyw"
+            username: process.env.NEXTCLOUD_USERNAME,
+            password: process.env.NEXTCLOUD_PASSWORD
         })
 
     const directoryItems = await client.getDirectoryContents("/cosmodrome2020/projectFiles");
