@@ -28,7 +28,7 @@ socket.onmessage = function (event) {
 
     } else if (typeof (event.data) === 'string') {
         var str = event.data;
-        
+
         var author = str.slice(str.indexOf("[") + 1, str.lastIndexOf("]"));
         var title = str.slice(str.indexOf("]") + 1)
 
@@ -36,7 +36,7 @@ socket.onmessage = function (event) {
             class: 'sketchInfo',
             html: "<p class='title'>" + title + "</p>" +
                 "<p class='author' style='font-size:15px'>" + author + "</p>",
-            click: () => window.location = "/" + str
+            click: () => $('.frontPageContainer').fadeOut('fast', function () { window.location = "/" + str })
         })
 
         $('.' + objectID).append(newDOM2).hide().fadeIn(1500)

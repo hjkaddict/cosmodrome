@@ -71,8 +71,6 @@ var wss = new WebSocket({ server })
 console.log("websocket server created")
 
 
-
-
 wss.on('connection', async function (socket) {
     console.log('Opened connection in Server');
 
