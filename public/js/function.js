@@ -11,11 +11,38 @@ socket.onopen = function () {
 }
 
 // When data is received
-socket.onmessage = function (event) {
-    var arrayBuffer = event.data
-    $('.sketchListContainer').append('<div class="sketchList"><img src="' + 
-    URL.createObjectURL(arrayBuffer) + '"></div>')
 
+var objectID = 0;
+socket.onmessage = async function (event) {
+    // console.log(typeof(data.thumbnail))
+
+    if (typeof (event.data) === 'object') {
+        objectID++;
+        var newDOM = $('<div/>', {
+            class: 'sketchList ' + objectID,
+            html:
+                $('<img>', {
+                    src: URL.createObjectURL(event.data)
+                })
+        });
+        $('.sketchListContainer').append(newDOM)
+
+    } else if (typeof (event.data) === 'string') {
+        var str = event.data;
+
+        var author = str.slice(str.indexOf("[") + 1, str.lastIndexOf("]"));
+        var title = str.slice(str.indexOf("]") + 1)
+
+        console.log(title)
+        var newDOM2 = $('<div/>', {
+            class: 'sketchInfo',
+            html: "<p class='title'>" + title + "</p>" +
+                "<p class='author' style='font-size:15px'>" + author + "</p>"
+        })
+
+        $('.' + objectID).append(newDOM2).hide().fadeIn(500)
+
+    }
 }
 
 // A connection could not be made
@@ -69,16 +96,32 @@ $(async function () {
         $(this).removeClass("hover").addClass("click");
     });
 
-    $('.sketchList').on('click', function () {
-        let filename = $(this).text().trim()
-        $("#sketchContainer").empty()
-        window.location = window.location.href + "/" + filename
-    })
+    // $('.sketchList').on('click', function () {
+    //     let filename = $(this).text().trim()
+    //     $("#sketchContainer").empty()
+    //     window.location = window.location.href + "/" + filename
+    // })
+
+    
 
 })
+
 
 $(document).ready(function () {
     $('body').css('display', 'none')
     $('body').fadeIn('slow')
+
+    $('.sketchListContainer').on({
+        mouseenter: function () {
+            $(this).find('.sketchInfo').fadeIn('fast')
+            $(this).find('img').css('opacity', '0.3')
+        },
+        mouseleave: function () {
+            $(this).find('.sketchInfo').fadeOut('fast')
+            $(this).find('img').css('opacity', '1.0')
+        }
+    }, '.sketchList');
 });
+
+
 

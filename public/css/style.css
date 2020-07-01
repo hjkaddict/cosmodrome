@@ -145,6 +145,7 @@ header {
 }
 
 .sketchList {
+    position: relative;
     margin: 10px;
     width: 250px;
     height: 250px;
@@ -161,15 +162,35 @@ header {
     height: 100%;
 }
 
-.sketchList:hover {
+
+.sketchInfo {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    z-index: 2;
     
 }
 
-.sketchList p {
+.sketchList .title{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     width: 100%;
-    font-size: 20px;
-    text-align: center;
+    font-size: 25px;
 }
+
+.sketchList .author{
+    position: absolute;
+    left: 50%;
+    bottom: 20px;
+    transform: translate(-50%, 0);
+    width: 100%;
+    font-size: 25px;
+}
+
 
 #sketchContainer {
     border: 2px solid black;
