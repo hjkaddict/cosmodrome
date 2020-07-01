@@ -36,27 +36,27 @@ app.get('/', (req, res) => {
     }
 })
 
-// app.get('/:id', async (req, res) => {
-//     try {
-//         const client = createClient(
-//             "https://cloud.udk-berlin.de/remote.php/webdav",
-//             {
-//                 username: process.env.NEXTCLOUD_USERNAME,
-//                 password: process.env.NEXTCLOUD_PASSWORD
-//             })
-//         const directoryItems = await client.getDirectoryContents("/cosmodrome2020/projectFiles/" + req.params.id);
+app.get('/:id', async (req, res) => {
+    try {
+        const client = createClient(
+            "https://cloud.udk-berlin.de/remote.php/webdav",
+            {
+                username: process.env.NEXTCLOUD_USERNAME,
+                password: process.env.NEXTCLOUD_PASSWORD
+            })
+        const directoryItems = await client.getDirectoryContents("/cosmodrome2020/projectFiles/" + req.params.id);
 
-//         let txt = await client.getFileContents("/cosmodrome2020/projectFiles/" + req.params.id + "/sketch.js", { format: "text" });
+        let txt = await client.getFileContents("/cosmodrome2020/projectFiles/" + req.params.id + "/sketch.js", { format: "text" });
 
-//         res.render('sketch', {
-//             title: 'sketch', 
-//             sketch: txt
-//         })
+        res.render('sketch', {
+            title: 'sketch', 
+            sketch: txt
+        })
 
-//     } catch (e) {
-//         console.log(e)
-//     }
-// })
+    } catch (e) {
+        console.log(e)
+    }
+})
 
 // app.listen(PORT, function () {
 //     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
