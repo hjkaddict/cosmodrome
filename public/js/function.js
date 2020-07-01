@@ -13,7 +13,7 @@ socket.onopen = function () {
 // When data is received
 
 var objectID = 0;
-socket.onmessage = async function (event) {
+socket.onmessage = function (event) {
     // console.log(typeof(data.thumbnail))
     console.log(event.data)
     if (typeof (event.data) === 'object') {
