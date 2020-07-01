@@ -3,11 +3,11 @@ var socket = new WebSocket(host)
 
 // When a connection is made
 socket.onopen = function () {
-    // console.log('Opened connection');
+    console.log('Opened connection');
 
     // send data to the server
-    // var json = JSON.stringify({ message: 'Hello 👋' });
-    // socket.send(json);
+    var json = JSON.stringify({ message: 'Hello 👋' });
+    socket.send(json);
 }
 
 // When data is received
@@ -15,7 +15,7 @@ socket.onopen = function () {
 var objectID = 0;
 socket.onmessage = async function (event) {
     // console.log(typeof(data.thumbnail))
-
+    console.log(event.data)
     if (typeof (event.data) === 'object') {
         objectID++;
         var newDOM = $('<div/>', {
