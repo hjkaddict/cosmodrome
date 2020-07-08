@@ -36,7 +36,8 @@
     </script>
 
     <script>
-        $(document).ready(function () {
+
+        window.onload = function() {
             const myCodeMirror = CodeMirror(document.getElementById("codeContainer"), {
                 value: js,
                 mode: "javascript",
@@ -74,7 +75,7 @@
                 })
 
             })
-        })
+        }
     </script>
 
 </head>
