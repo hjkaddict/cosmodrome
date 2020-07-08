@@ -78,9 +78,6 @@ $(async function () {
             }, 500, function () {
                 $('.projectContainer').css('border-bottom', 'none')
             })
-
-
-
             $(this).removeClass('filterOpened')
         }
 
@@ -134,11 +131,25 @@ $(async function () {
         $(this).removeClass("hover").addClass("click");
     });
 
-    // $('.sketchList').on('click', function () {
-    //     let filename = $(this).text().trim()
-    //     $("#sketchContainer").empty()
-    //     window.location = window.location.href + "/" + filename
-    // })
+    
+    $('.mobileMenuBtn img').click(function() {
+        if($('.projectContainer').hasClass('open')) {
+            $('.projectContainer').removeClass('open')
+            $('.projectContainer').css('height', '0')
+            $('.mobileMenuBtn img').attr('src', 'img/menu.png')
+            console.log('closed')
+        } else {
+            $('.projectContainer').addClass('open')
+            $('.projectContainer').css('height', '85vh')
+            $('.mobileMenuBtn img').attr('src', 'img/close.png')
+            console.log('opened')
+        }
+    })
+
+    // $('.mobileMenu').append($('.projectContainer'))
+
+
+
 
 
 })

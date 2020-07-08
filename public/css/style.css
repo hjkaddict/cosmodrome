@@ -15,19 +15,28 @@ html {
     font-size: 50px;
 }
 
+.blank {
+    height: 200px;
+}
+
 header {
+    position: fixed;
+    width: 100%;
     display: flex;
     align-items: flex-end;
     border-bottom: 2px solid black;
     transition: height 0.5s;
     height: 200px;
+    z-index: 5;
+    background-color: white;
 }
 
 .headerTitle {
-    font-size: 80px;
+    font-size: 70px;
     padding: 20px;
     display: flex;
     align-items: flex-end;
+    width: 900px;
 }
 
 .headerMetaData {
@@ -37,10 +46,31 @@ header {
     text-align: right;
 }
 
+.mobileMenuBtn {
+    width: 60px;
+    padding: 10px;
+    display: none;
+}
+
+.mobileMenuBtn img {
+    width: 100%;
+    cursor: pointer;
+}
+
 .frontPageContainer {
     display: flex;
     flex-direction: column;
     transition: height 1s;
+}
+
+.mobileMenu {
+    display: none;
+    position: fixed;
+    top: 15vh;
+    width: 100%;
+    height: 100%;
+    background-color: red;
+    z-index: 2;
 }
 
 .projectIntroContainer {
@@ -61,6 +91,9 @@ header {
     text-align: center;
     font-size: 20px;
     padding: 5px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .filterOpened {
@@ -203,6 +236,7 @@ header {
     padding: 20px;
     display: flex;
     flex-wrap: wrap;
+    z-index: 1;
 }
 
 .sketchList {
@@ -259,30 +293,42 @@ header {
 @media only screen and (max-width: 1400px) {}
 
 @media only screen and (max-width: 1024px) {
-
     header {
         height: 15vh;
     }
-
+    .blank {
+        height: 15vh;
+    }
     .headerTitle {
         padding: 10px;
-        font-size: 6vh;
+        font-size: 4.5vh;
     }
-
     .headerMetaData {
         display: none;
     }
-
     .sketchListContainer {
         justify-content: space-evenly;
     }
-
     .sketchList {
-        width: 250px;
-        height: 250px;
         margin: 5px;
     }
-    
+    .mobileMenuBtn {
+        display: block;
+    }
+    .projectContainer {
+        padding: 0 20px;
+        display: block;
+        position: fixed;
+        top: 15vh;
+        width: 100%;
+        height: 0;
+        background-color: rgba(255, 0, 0, 0.9);
+        z-index: 5;
+        transition: height 0.5s;
+    }
+    .filterBtn {
+        display: none;
+    }
 }
 
 @media only screen and (max-width: 768px) {}
