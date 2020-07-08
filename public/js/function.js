@@ -39,11 +39,11 @@ socket.onmessage = function (event) {
                 "<p class='title'>" + title + "</p>" +
                 "<p class='author' style='font-size:15px'>" +
                 author + "</p>",
-            click: () => $('body').fadeOut('fast', function () { window.location = "/sketches/" + str })
+            click: () => window.open('/sketches/' + str, '_blank')
         })
         $('.' + objectID).addClass(title);
         $('.' + objectID).addClass(topic);
-        $('.' + objectID).append(newDOM2).hide().fadeIn(1500)
+        $('.' + objectID).append(newDOM2).hide().fadeIn(500)
     }
 }
 
@@ -124,9 +124,9 @@ $(async function () {
         $(this).removeClass("hover").addClass("click");
     });
 
-    
-    $('.mobileMenuBtn img').click(function() {
-        if($('.projectContainer').hasClass('open')) {
+
+    $('.mobileMenuBtn img').click(function () {
+        if ($('.projectContainer').hasClass('open')) {
             $('.projectContainer').removeClass('open')
             $('.projectContainer').css('height', '0')
             $('.mobileMenuBtn img').attr('src', 'img/menu.png')
