@@ -23,8 +23,10 @@
         if (windowWidth < 1024) {
             var tmp1 = js.split('createCanvas')
             var tmp2 = tmp1[1].split(')')
+            var tmp3 = tmp2[0].split(',')
 
-            var mobileJS = js.replace('createCanvas' + tmp2[0], 'createCanvas(windowWidth, windowHeight')
+            var mobileJS = js.replace('createCanvas' + tmp3[0] + ',' + tmp3[1], 'createCanvas(windowWidth, windowHeight')
+
             eval(mobileJS)
         } else {
             eval(js)
