@@ -15,8 +15,22 @@
     <title>Cosmodrome</title>
 
     <script>
+        var windowHeight = $(window).height()
+        var windowWidth = $(window).width()
+
         const js = <%- JSON.stringify(sketch) %>;
-        eval(js)
+
+        if (windowWidth < 1024) {
+            var tmp1 = js.split('createCanvas')
+            var tmp2 = tmp1[1].split(')')
+
+            var mobileJS = js.replace('createCanvas' + tmp2[0], 'createCanvas(windowWidth, windowHeight')
+            eval(mobileJS)
+        } else {
+            eval(js)
+        }
+
+
 
     </script>
 
@@ -31,6 +45,12 @@
             $('.p5Canvas').ready(function () {
                 var canvasWidth = $('.p5Canvas').outerWidth()
                 var canvasHeight = $('.p5Canvas').outerHeight()
+
+                if (windowWidth < 1024) {
+                    $('#codeContainer').hide()
+                    $('.openCode').hide()
+                }
+
                 $('.openCode').css('height', canvasHeight)
 
                 $('.openCode').on('click', function () {

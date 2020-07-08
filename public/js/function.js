@@ -39,7 +39,7 @@ socket.onmessage = function (event) {
                 "<p class='title'>" + title + "</p>" +
                 "<p class='author' style='font-size:15px'>" +
                 author + "</p>",
-            click: () => $('.frontPageContainer').fadeOut('fast', function () { window.location = "/sketches/" + str })
+            click: () => $('body').fadeOut('fast', function () { window.location = "/sketches/" + str })
         })
         $('.' + objectID).addClass(title);
         $('.' + objectID).addClass(topic);
@@ -105,13 +105,6 @@ $(async function () {
 
     })
 
-
-    //go back to frontPage(by clicking goback button )
-    $('#goback').click(function () {
-        $('body').fadeOut(function () {
-            window.location = "/"
-        })
-    });
 
     //student list hover and click color
     $(".studentListContainer ul li").hover(function () {
