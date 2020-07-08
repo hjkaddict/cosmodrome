@@ -1,8 +1,8 @@
+// 
+
 const express = require('express')
 const ejs = require('ejs')
 const path = require('path')
-const fs = require('fs')
-const http = require('http')
 var WebSocket = require("ws").Server
 const PORT = process.env.PORT || 3001;
 
@@ -12,8 +12,6 @@ const app = express()
 
 
 const publicDirectoryPath = path.join(__dirname, '../public')
-
-const middle = require('./middleware/middle')
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'));
@@ -52,12 +50,15 @@ app.get('/sketches/:id', async (req, res) => {
                 username: process.env.NEXTCLOUD_USERNAME,
                 password: process.env.NEXTCLOUD_PASSWORD
             })
-        const directoryItems = await client.getDirectoryContents("/cosmodrome2020/projectFiles/" + req.params.id);
 
         let txt = await client.getFileContents("/cosmodrome2020/projectFiles/" + req.params.id + "/sketch.js", { format: "text" });
+        
+        let str = req.params.id
+        let author = str.slice(str.indexOf("[") + 1, str.lastIndexOf("]"));
+        let title = str.slice(str.indexOf("]") + 1)
 
         res.render('sketch', {
-            title: 'sketch',
+            title: title + ' by ' + author,
             sketch: txt
         })
 

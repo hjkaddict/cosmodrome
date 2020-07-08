@@ -12,7 +12,9 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js"></script>
 
-    <title>Cosmodrome</title>
+    <link rel="stylesheet" href="/css/sketch.css">
+
+    <title><%= title %></title>
 
     <script>
         var windowHeight = $(window).height()
@@ -31,9 +33,6 @@
         } else {
             eval(js)
         }
-
-
-
     </script>
 
     <script>
@@ -56,14 +55,13 @@
                 $('.openCode').css('height', canvasHeight)
 
                 $('.openCode').on('click', function () {
-                    $('#codeContainer').css('width', $('body').width() - canvasWidth - 100)
+                    $('#codeContainer').css('width', $('body').width() - canvasWidth - 50)
 
                     if ($('body').find('.opened').length === 0) {
                         $('#codeContainer').animate({
-                            'width': $('body').width() - canvasWidth - 100
+                            'width': $('body').width() - canvasWidth - 50
                         }, function () {
                             $('.openCode img').attr('src', '/img/arrow-left.png')
-                            $('.openCode').css('animation', 'blinker 1s linear infinite')
                         }).addClass('opened')
                     } else {
                         $('#codeContainer').animate({
@@ -71,8 +69,6 @@
                         }, function () {
                             $('.openCode img').attr('src', '/img/arrow-right.png')
                             $('.openCode').css('animation', 'none')
-                            // $('.openCode').css('animation', 'blinker 1s linear infinite')
-
                         }).removeClass('opened')
                     }
                 })
@@ -84,7 +80,6 @@
 </head>
 
 <body>
-
     <div id="codeContainer"></div>
 
     <div class="openCode">
