@@ -5,10 +5,10 @@
 .openCode {
     /* height: 100%; */
     width: 20px;
-    border: 1px solid black;
+    border: 1px solid red;
     background-color: white;
     float: left;
-    vertical-align: middle;
+    /* vertical-align: middle; */
     position: relative;
     /* text-align: middle; */
     transition: width 0.2s;
