@@ -34,6 +34,16 @@ app.get('/', (req, res) => {
     }
 })
 
+app.get('/mysketch', (req, res) => {
+
+    try {
+        res.render('mySketch', {
+        })
+    } catch (e) {
+
+    }
+})
+
 app.get('/sketches/:id', async (req, res) => {
     try {
         const client = createClient(
@@ -55,14 +65,6 @@ app.get('/sketches/:id', async (req, res) => {
         console.log(e)
     }
 })
-
-// app.get('/projects:/:id', async (req, res) => {
-//     try {
-//         res.render('projects')
-//     } catch (e) {
-
-//     }
-// })
 
 
 var server = app.listen(PORT, function () {

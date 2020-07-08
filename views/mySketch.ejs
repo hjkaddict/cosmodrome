@@ -1,0 +1,73 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js"></script>
+
+    <title>Cosmodrome</title>
+</head>
+
+
+<script>
+
+    function setup() {
+        createCanvas(800, 800);
+        cols = floor(width / w);
+        rows = floor(height / w);
+
+        let color = 0;
+        for (let j = 0; j < rows; j++) {
+            for (let i = 0; i < cols; i++) {
+                var cell = new Cell(i, j, color);
+                grid.push(cell);
+            }
+        }
+
+        current = grid[0];
+        background(0)
+    }
+
+    function draw() {
+        background(51);
+        //color ++;
+        for (let i = 0; i < grid.length; i++) {
+            grid[i].show();
+        }
+
+        current.visited = true;
+        current.highlight(); // let's add a function that tells us where the cursor is.
+        // step 1 in the wiki page. Pick a random neighbour and mark it as visie
+        let next = current.checkNeighbors();
+
+        if (next) {
+
+            next.visited = true;
+
+            // STEP 2
+            // check the wiki page! simply push things in
+            stack.push(current);
+
+            // step 3, remove walls
+            removeWalls(current, next);
+
+            // step 4 in the wiki page
+            current = next;
+            // here is where the magic happen. If there is no an available free neighbor,
+            // we check if our stack it is not empty. If it is not, we take the last cell cell insert as our new current cursor.
+            // We are done!!
+        } else if (stack.length > 0) {
+            current = stack.pop();
+        }
+
+    }
+
+  // how about changing the colors depending on how many time they get visited
+  // what about adding horizzontal or vertical bias?
+
+</script>
+
+
+</html>
